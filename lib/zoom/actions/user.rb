@@ -46,7 +46,7 @@ module Zoom
       def user_assistants_create(*args)
         params = Zoom::Params.new(Utils.extract_options!(args))
         params.require(:user_id).permit(:assistants)
-        Utils.parse_response self.class.post("/users/#{params[:user_id]}/assistants", body: params.except(:user_id), headers: request_headers)
+        Utils.parse_response self.class.post("/users/#{params[:user_id]}/assistants", body: params.except(:user_id).to_json, headers: request_headers)
       end
 
       def user_assistants_delete_all(*args)
