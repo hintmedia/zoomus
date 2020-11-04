@@ -114,6 +114,13 @@ module Zoom
         params.require(:vanity_name)
         Utils.parse_response self.class.get("/users/vanity_name", query: params.slice(:vanity_name), headers: request_headers)
       end
+
+      def user_password_update(*args)
+        params = Zoom::Params.new(Utils.extract_options!(args))
+        params.require(:id).permit(%i[password])
+        Utils.parse_response self.class.patch("/users/#{params[:id]}/password", body: params.except(:id), headers: request_headers)
+      end
+
     end
   end
 end
