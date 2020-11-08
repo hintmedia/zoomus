@@ -8,7 +8,7 @@ module Zoom
     include Actions::Account
     include Actions::Billing
     include Actions::Dashboard
-    include Actions::Group
+    include Actions::Groups
     include Actions::M323Device
     include Actions::Meeting
     include Actions::Phone
