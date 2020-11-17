@@ -58,6 +58,18 @@ module Zoom
         params.require(:account_id)
         Utils.parse_response self.class.post("/accounts/#{params[:account_id]}/sip_trunk/internal_numbers", headers: request_headers)
       end
+
+      def sip_trunks_internal_callout_countries_add(*args)
+        params = Zoom::Params.new(Utils.extract_options!(args))
+        params.require(:account_id)
+        Utils.parse_response self.class.post("/accounts/#{params[:account_id]}/sip_trunk/callout_countries", headers: request_headers)
+      end
+
+      def sip_trunks_numbers_assign(*args)
+        params = Zoom::Params.new(Utils.extract_options!(args))
+        params.require(:account_id)
+        Utils.parse_response self.class.post("/accounts/#{params[:account_id]}/sip_trunk/numbers", headers: request_headers)
+      end
     end
   end
 end
