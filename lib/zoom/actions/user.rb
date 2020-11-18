@@ -85,6 +85,12 @@ module Zoom
         Utils.parse_response self.class.get("/users/#{params[:id]}/settings", query: params.except(:id), headers: request_headers)
       end
 
+      def user_settings_update(*args)
+        params = Zoom::Params.new(Utils.extract_options!(args))
+        params.require(:id).permit(%i[schedule_meeting in_meeting email_notification recording telephony feature tsp])
+        Utils.parse_response self.class.patch("/users/#{params[:id]}/settings", body: params.except(:id).to_json, headers: request_headers)
+      end
+
       def user_email_check(*args)
         params = Zoom::Params.new(Utils.extract_options!(args))
         params.require(:email)
