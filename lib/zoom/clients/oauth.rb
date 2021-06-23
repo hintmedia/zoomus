@@ -39,6 +39,12 @@ module Zoom
         response
       end
 
+      def revoke
+        response = revoke_tokens(access_token: @access_token)
+        set_tokens(response)
+        response
+      end
+
       private
 
       def set_tokens(response)

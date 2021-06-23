@@ -23,6 +23,13 @@ module Zoom
         response = self.class.post("/oauth/data/compliance", body: options.to_json, headers: oauth_request_headers, base_uri: 'https://zoom.us/')
         Utils.parse_response response
       end
+
+      def revoke_tokens(*args)
+        options = Zoom::Params.new(Utils.extract_options!(args))
+        options.require(%i[access_token])
+        response = self.class.post("/oauth/revoke?token=#{options[:access_token]}", headers: oauth_request_headers, base_uri: 'https://zoom.us/')
+        Utils.parse_response(response)
+      end
     end
   end
 end
